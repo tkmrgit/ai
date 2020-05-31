@@ -32,14 +32,14 @@ export default class extends Module {
 		this.tokenizer = new MeCab();
 		this.tokenizer.command = config.mecab;
 
-		setInterval(this.learn, 1000 * 60 * 60);
+		setInterval(this.learn, 1000 * 60 * 30);
 
 		return {};
 	}
 
 	@autobind
 	private async learn() {
-		const tl = await this.ai.api('notes/hybrid-timeline', {
+		const tl = await this.ai.api('notes/global-timeline', {
 			limit: 30
 		});
 
