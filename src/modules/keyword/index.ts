@@ -32,7 +32,7 @@ export default class extends Module {
 		this.tokenizer = new MeCab();
 		this.tokenizer.command = config.mecab;
 
-		setInterval(this.learn, 1000 * 60 * 60 * 2);
+		setInterval(this.learn, 1000 * 60);
 
 		return {};
 	}
@@ -42,10 +42,10 @@ export default class extends Module {
 		const tl = await this.ai.api('notes/hybrid-timeline', {
 			limit: 30
 		});
-		const htl = await this.ai.api('notes/hybrid-timeline', {
+		const gtl = await this.ai.api('notes/global-timeline', {
 			limit: 30
 		});
-		const interestedNotes = tl.filter(note =>
+		const interestedNotes = gtl.filter(note =>
 			note.userId !== this.ai.account.id &&
 			note.text != null &&
 			note.cw == null);
